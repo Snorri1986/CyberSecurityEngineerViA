@@ -131,3 +131,42 @@ Successfully installed wave-0.0.2
 Wave==0.0.2
 (venvex2.1) den@ubuntu:~/python-ex2$ deactivate
 den@ubuntu:~/python-ex2$
+# install libs from file
+den@ubuntu:~/python-ex2$ python3 -m venv venv-libs-from-txt-file
+den@ubuntu:~/python-ex2$ ls -lh
+total 16K
+drwxrwxr-x 6 den den 4.0K Sep 15 12:27 venvex2
+drwxrwxr-x 6 den den 4.0K Sep 15 12:28 venvex2.1
+drwxrwxr-x 6 den den 4.0K Sep 15 13:01 venv-libs-from-txt-file
+den@ubuntu:~/python-ex2$ source venvex2/bin/activate
+(venvex2) den@ubuntu:~/python-ex2$ pip3 freeze > libs-list.txt
+(venvex2) den@ubuntu:~/python-ex2$ cat libs-list.txt
+certifi==2022.9.14
+charset-normalizer==2.1.1
+idna==3.4
+requests==2.28.1
+urllib3==1.26.12
+(venvex2) den@ubuntu:~/python-ex2$ deactivate
+den@ubuntu:~/python-ex2$ source venv-libs-from-txt-file/bin/activate
+(venv-libs-from-txt-file) den@ubuntu:~/python-ex2$ pip3 freeze
+(venv-libs-from-txt-file) den@ubuntu:~/python-ex2$ pip install -r libs-list.txt
+Collecting certifi==2022.9.14
+  Using cached certifi-2022.9.14-py3-none-any.whl (162 kB)
+Collecting charset-normalizer==2.1.1
+  Using cached charset_normalizer-2.1.1-py3-none-any.whl (39 kB)
+Collecting idna==3.4
+  Using cached idna-3.4-py3-none-any.whl (61 kB)
+Collecting requests==2.28.1
+  Using cached requests-2.28.1-py3-none-any.whl (62 kB)
+Collecting urllib3==1.26.12
+  Using cached urllib3-1.26.12-py2.py3-none-any.whl (140 kB)
+Installing collected packages: certifi, charset-normalizer, idna, urllib3, requests
+Successfully installed certifi-2022.9.14 charset-normalizer-2.1.1 idna-3.4 requests-2.28.1 urllib3-1.26.12
+(venv-libs-from-txt-file) den@ubuntu:~/python-ex2$ pip3 freeze
+certifi==2022.9.14
+charset-normalizer==2.1.1
+idna==3.4
+requests==2.28.1
+urllib3==1.26.12
+(venv-libs-from-txt-file) den@ubuntu:~/python-ex2$ deactivate
+den@ubuntu:~/python-ex2$ 
