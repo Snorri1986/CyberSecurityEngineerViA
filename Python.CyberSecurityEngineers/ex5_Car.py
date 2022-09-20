@@ -3,6 +3,7 @@ from contextlib import redirect_stderr
 
 class Car:
     def __init__(self,color,power,type,price):
+	"This method works like a constructor and builds an object"
         self.color = color
         self.power = power
         self.type = type

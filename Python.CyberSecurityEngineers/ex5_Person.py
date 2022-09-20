@@ -1,6 +1,7 @@
 #define Person class
 class Person:
     def __init__(self,name,surname,age,race):
+	"This method works like a constructor and builds an object"
         self.name = name
         self.surname = surname
         self.age = age
