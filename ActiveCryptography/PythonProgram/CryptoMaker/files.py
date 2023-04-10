@@ -1,8 +1,6 @@
-import os,math
+import os
 from cryptooperations import gen_random_key
-
-# def showfilename(param1, param2, param3):
-#     print(param1, param2, param3)
+from cryptooperations import xoroperationencrypt
 
 def encryptfile():
     """Function for encrypt file"""
@@ -16,13 +14,14 @@ def encryptfile():
     filesize = getfilesizeinbytes(file_to_encrypt)
     keytxt = gen_random_key(filesize)
     createotpfile(keytxt, otp_file_name)
-    sourceinbinary = toBinary(gettxtfromsourcefile(file_to_encrypt))
-    #test code
-    print(sourceinbinary)
-
+    sourcetxtbytearray = getbytearrayfromsourcefile(file_to_encrypt)
+    keybytearray = getbytearrayfromtxt(keytxt)
+    encryptedsource=xoroperationencrypt(sourcetxtbytearray,keybytearray)
+    createencfile(encrypted_file_name, encryptedsource)
 
 def decryptfile():
     """Function for dencrypt file"""
+    #TODO:function is not finished yet
     print("Decryption............")
     print("Enter the filename to decrypt with extension")
     decrypted_file = input()
@@ -31,20 +30,17 @@ def decryptfile():
     print("Write the filename for encrypted file")
     encrypted_file_name = input()
 
-
 def find(name, path):
     """ find file name through particular path """
     for root, dirs, files in os.walk(path):
         if name in files:
             return os.path.join(root, name)
 
-
 def getfilesizeinbytes(filename):
     """Get size of file"""
     # only hardcode on this case
     app_path = "D:\CyberSecurityEngineerViA\ActiveCryptography\PythonProgram\CryptoMaker"
     file_stats = os.stat(find(filename, app_path))
-    print(f'File Size in Bytes is {file_stats.st_size}')
     return file_stats.st_size
 
 def createotpfile(key,filename):
@@ -53,22 +49,32 @@ def createotpfile(key,filename):
     file.write(listtostr(str(key)))
     file.close()
 
+def createencfile(filename,data):
+    """Create OTP file"""
+    file = open(filename, "w")
+    file.write(str(data))
+    file.close()
+
 def listtostr(list):
     """Convert list to string"""
     str = " "
     return (str.join(list))
 
-def gettxtfromsourcefile(filename):
+def getbytearrayfromsourcefile(filename):
     file = open(filename,"r")
-    #file.close()
-    return file
+    file_char_array = []
+    for x in file:
+        file_char_array.extend(x)
+    b = bytearray()
+    b.extend(map(ord,file_char_array))
+    return b
 
-def toBinary(text):
-    """Convert txt to binary"""
-    l,m=[],[]
-    #TODO: remove spaces,comas,and [] in text
-    for i in text:
-       l.append(ord(i))
-    for i in l:
-       m.append(int(bin(i)[2:]))
-    return m
+def getbytearrayfromtxt(txt):
+    """Get bytearray from key file"""
+    txt_in_char_arr = []
+    for x in str(txt):
+        txt_in_char_arr.extend(x)
+    b = bytearray()
+    b.extend(map(ord, txt_in_char_arr))
+    return b
+

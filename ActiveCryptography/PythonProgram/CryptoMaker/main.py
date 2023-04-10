@@ -1,4 +1,3 @@
-# from files import showfilename
 from files import encryptfile
 from files import decryptfile
 print("Welcome")
@@ -12,4 +11,4 @@ elif userchoiceAsNumber == 2 :
     decryptfile()
 else :
     print("Wrong number. Only 1 or 2 is allowed")
-# showfilename(sys.argv[1], sys.argv[2], sys.argv[3])
+
