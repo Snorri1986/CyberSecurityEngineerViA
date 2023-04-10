@@ -1,6 +1,7 @@
 import os
 from cryptooperations import gen_random_key
 from cryptooperations import xoroperationencrypt
+from cryptooperations import xoroperationdecrypt
 
 def encryptfile():
     """Function for encrypt file"""
@@ -29,6 +30,9 @@ def decryptfile():
     otp_file_name = input()
     print("Write the filename for encrypted file")
     encrypted_file_name = input()
+    decryptfilestr = xoroperationdecrypt(getbytearrayfromsourcefile(decrypted_file),getbytearrayfromsourcefile(otp_file_name))
+    print(decryptfilestr)
+
 
 def find(name, path):
     """ find file name through particular path """
@@ -58,7 +62,8 @@ def createencfile(filename,data):
 def listtostr(list):
     """Convert list to string"""
     str = " "
-    return (str.join(list))
+    # return (str.join(list))
+    return str.join(list)
 
 def getbytearrayfromsourcefile(filename):
     file = open(filename,"r")
