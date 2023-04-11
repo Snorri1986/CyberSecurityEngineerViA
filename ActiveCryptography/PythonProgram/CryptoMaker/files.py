@@ -22,16 +22,15 @@ def encryptfile():
 
 def decryptfile():
     """Function for dencrypt file"""
-    #TODO:function is not finished yet
     print("Decryption............")
-    print("Enter the filename to decrypt with extension")
-    decrypted_file = input()
+    print("Enter the filename of encrypted file")
+    enc_file = input()
     print("OTP file")
     otp_file_name = input()
-    print("Write the filename for encrypted file")
-    encrypted_file_name = input()
-    decryptfilestr = xoroperationdecrypt(getbytearrayfromsourcefile(decrypted_file),getbytearrayfromsourcefile(otp_file_name))
-    print(decryptfilestr)
+    print("Write the filename of decrypted file")
+    decrypted_file_name = input()
+    decryptfilebytearr = xoroperationdecrypt(getbytearrayfromsourcefile(enc_file),getbytearrayfromsourcefile(otp_file_name))
+    writedecryptedfile(decrypted_file_name, decryptfilebytearr)
 
 
 def find(name, path):
@@ -82,4 +81,10 @@ def getbytearrayfromtxt(txt):
     b = bytearray()
     b.extend(map(ord, txt_in_char_arr))
     return b
+
+def writedecryptedfile(filename,data):
+    """Create decrypted file"""
+    file = open(filename, "w")
+    file.write(str(data))
+    file.close()
 

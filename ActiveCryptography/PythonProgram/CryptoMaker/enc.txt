@@ -1,1 +1,0 @@
-bytearray(b'\x13U@L_\x00\x00tBCCUPDEO_\r')
